@@ -41,7 +41,7 @@ antigen apply
 #export http_proxy='http://localhost:8889'
 #export https_proxy='http://localhost:8889'
 #export ftp_proxy='http://localhost:8889'
-export ALL_PROXY='socks5://127.0.0.1:1089'
+#export ALL_PROXY='socks5://127.0.0.1:1089'
 export USE_BAZEL_VERSION=last_green
 export PATH=$PATH:/usr/local/go/bin
 
