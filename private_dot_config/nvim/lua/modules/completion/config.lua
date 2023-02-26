@@ -102,7 +102,7 @@ function config.mason_nullls()
     automatic_setup = true, -- Recommended, but optional
   })
 
-  require('mason-null-ls').setup_handlers()
+  require('mason-null-ls').setup_handlers({})
 end
 
 function config.mason_lspconfig()

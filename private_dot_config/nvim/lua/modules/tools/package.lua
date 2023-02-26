@@ -21,12 +21,13 @@ package({
 
 package({
   'numToStr/Comment.nvim',
+  -- keys = { 'gcc', 'gcb', 'gc', 'gb' }, -- 当在视图模式下无效
   config = function()
     require('Comment').setup({
       pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
     })
   end,
-  event = 'BufRead',
+  event = 'VeryLazy',
   dependencies = {
     {
       'JoosepAlviste/nvim-ts-context-commentstring',
@@ -52,7 +53,7 @@ package({
 
 package({
   'lewis6991/gitsigns.nvim',
-  event = 'BufRead',
+  event = 'VeryLazy',
   config = function()
     require('gitsigns').setup()
   end,
@@ -117,4 +118,40 @@ package({
     vim.g.mkdp_filetypes = { 'markdown' }
   end,
   ft = { 'markdown' },
+})
+
+package({
+  'rcarriga/nvim-dap-ui',
+  config = function()
+    local dap, dapui = require('dap'), require('dapui')
+    dapui.setup()
+    dap.listeners.after.event_initialized['dapui_config'] = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated['dapui_config'] = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited['dapui_config'] = function()
+      dapui.close()
+    end
+  end,
+  --keys = { '<F5>', '<F9>', '<F10>', '<F11>', '<F12>' },
+  -- event = 'VeryLazy',
+  ft = { 'c', 'cpp' },
+  dependencies = {
+    { 'mfussenegger/nvim-dap' },
+    {
+      'jay-babu/mason-nvim-dap.nvim',
+      config = function()
+        local install = require('modules.tools.dap_install')
+        require('mason').setup()
+        require('mason-nvim-dap').setup({
+          ensure_installed = install,
+          automatic_setup = true,
+        })
+        require('mason-nvim-dap').setup_handlers({})
+      end,
+    },
+    { 'williamboman/mason.nvim' },
+  },
 })

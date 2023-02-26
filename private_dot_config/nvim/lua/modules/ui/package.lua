@@ -1,17 +1,20 @@
 local package = require('core.pack').package
 local conf = require('modules.ui.config')
 
-package({ 'glepnir/zephyr-nvim', config = conf.zephyr })
-package({'folke/tokyonight.nvim', lazy=false ,config = function ()
-  require("tokyonight").setup({
-  style = "storm",
-  styles = {
-    functions = { italic = true },
-  },
-  vim.cmd[[colorscheme tokyonight]]
-})
-
-end})
+package({ 'glepnir/zephyr-nvim', lazy = false, config = conf.zephyr })
+-- package({
+--   'folke/tokyonight.nvim',
+--   lazy = false,
+--   config = function()
+--     require('tokyonight').setup({
+--       style = 'storm',
+--       styles = {
+--         functions = { italic = true },
+--       },
+--       vim.cmd([[colorscheme tokyonight]]),
+--     })
+--   end,
+-- })
 
 package({ 'glepnir/dashboard-nvim', config = conf.dashboard })
 
@@ -24,15 +27,20 @@ package({
 
 package({
   'nvim-lualine/lualine.nvim',
-  lazy=false,
-  config= function ()
-    require("lualine").setup({
-      options = {
-        theme = "tokyonight",
-    },
+  event = 'VeryLazy',
+  config = function()
+    require('lualine').setup({
+      --[[ options = {
+        theme = 'tokyonight',
+      }, ]]
+    })
+  end,
 })
 
-  end
+package({
+  'akinsho/nvim-bufferline.lua',
+  event = 'VeryLazy',
+  version = 'v3.*',
+  config = conf.nvim_bufferline,
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 })
-
-package({ 'akinsho/nvim-bufferline.lua', version="v3.*" ,config = conf.nvim_bufferline, dependencies = { 'nvim-tree/nvim-web-devicons'} })

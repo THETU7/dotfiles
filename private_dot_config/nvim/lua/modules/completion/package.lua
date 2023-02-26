@@ -4,17 +4,18 @@ local conf = require('modules.completion.config')
 -- @info mason.nvim is optimized to load as little as possible during setup.
 -- Lazy-loading the plugin, or somehow deferring the setup, is not recommended.
 package({
-  'williamboman/mason.nvim',
-  config = conf.mason,
+  'neovim/nvim-lspconfig',
+  config = function()
+    require('modules.completion.lspconfig')
+  end,
   event = { 'BufReadPre', 'BufNewFile' },
+  -- event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
-    { 'williamboman/mason-lspconfig.nvim', config = conf.mason_lspconfig },
     {
-      'neovim/nvim-lspconfig',
-      config = function()
-        require('modules.completion.lspconfig')
-      end,
+      'williamboman/mason.nvim',
+      config = conf.mason,
     },
+    { 'williamboman/mason-lspconfig.nvim', config = conf.mason_lspconfig },
     { 'jay-babu/mason-null-ls.nvim', config = conf.mason_nullls },
     {
       'jose-elias-alvarez/null-ls.nvim',
@@ -60,8 +61,16 @@ package({
 
 package({
   'windwp/nvim-ts-autotag',
-  event = 'InsertEnter',
+  -- event = 'InsertEnter',
+  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   config = function()
-    require('nvim-ts-autotag').setup()
+    require('nvim-treesitter.configs').setup({
+      autotag = {
+        enable = true,
+      },
+    })
   end,
+  --[[ dependencies = {
+    { 'nvim-treesitter' },
+  }, ]]
 })

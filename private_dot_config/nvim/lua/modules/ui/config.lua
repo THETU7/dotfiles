@@ -47,6 +47,23 @@ function config.nvim_bufferline()
         local icon = level:match('error') and ' ' or ' '
         return ' ' .. icon
       end,
+      offsets = {
+        {
+          filetype = 'NvimTree',
+          text = 'File Explorer',
+          highlight = 'Directory',
+          separator = true, -- use a "true" to enable the default, or set your own character
+        },
+      },
+      --[[ offsets = {
+        {
+          filetype = 'NvimTree',
+          text = 'NvimTree_1',
+          highlight = 'Directory',
+          separator = true,
+          text_align = 'left',
+        },
+      }, ]]
     },
   })
 end
@@ -61,6 +78,10 @@ function config.nvim_tree()
       enable = true,
     },
   })
+end
+
+function config.zephyr()
+  require('zephyr')
 end
 
 return config
