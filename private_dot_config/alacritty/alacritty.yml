@@ -1,0 +1,65 @@
+# 设置字体
+font:
+  normal:
+    family: "JetBrainsMonoNL Nerd Font"
+    style: Regular
+  bold:
+    family: "JetBrainsMono Nerd Font"
+    style: Bold
+  italic:
+    family: "JetBrainsMono Nerd Font"
+    style: Italic
+  bold_italic:
+    family: "JetBrainsMono Nerd Font"
+    style: Bold Italic
+
+  # 字大小
+  size: 7.5
+
+draw_bold_text_with_bright_colors: true
+window:
+  opacity: 1
+  decorations: full
+  padding:
+    x: 5
+    y: 5
+
+scrolling:
+  # 回滚缓冲区中的最大行数,指定“0”将禁用滚动。
+  history: 10000
+
+  # 滚动行数
+  multiplier: 10
+#
+# # 如果为‘true’，则使用亮色变体绘制粗体文本。
+#
+# selection:
+#   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+#   save_to_clipboard: true
+#
+# live_config_reload: true
+
+selection:
+  # 分割语义化单词的分隔符，这个会影响到鼠标双击左键的单词选中。
+  # 比如 @ 作为分割 username 和 password 的字符，默认配置里面竞是没有的。。。
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t@="
+
+  # 选中文本后是否复制到主剪贴板，关于主剪贴板是啥可以参考 https://wiki.archlinux.org/index.php/clipboard
+  save_to_clipboard: false
+
+mouse:
+  # 点击配置
+  #
+  # 双击和三击的判定等待时间，数值越小，需要快速的双击才能判定为双击操作
+  # double_click: { threshold: 300 }
+  # triple_click: { threshold: 300 }
+
+  # 打字的时候临时隐藏鼠标
+  hide_when_typing: false
+
+key_bindings:
+  - { key: T, mods: Control|Shift, action: CreateNewWindow }
+  - { key: W, mods: ALT, action: Quit }
+
+import:
+  - ~/.config/alacritty/themes/themes/one_dark.yaml
