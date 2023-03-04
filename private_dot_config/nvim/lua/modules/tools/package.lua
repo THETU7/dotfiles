@@ -6,7 +6,7 @@ package({
   cmd = 'Telescope',
   config = conf.telescope,
   dependencies = {
-    { 'nvim-lua/plenary.nvim' },
+    { 'nvim-lua/plenary.nvim', lazy = true },
     { 'nvim-telescope/telescope-fzy-native.nvim' },
   },
 })
@@ -53,7 +53,8 @@ package({
 
 package({
   'lewis6991/gitsigns.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
+  -- event = "VeryLazy",
   config = function()
     require('gitsigns').setup()
   end,
@@ -61,7 +62,7 @@ package({
 
 package({
   'rmagatti/auto-session',
-  -- event = 'BufRead',
+  event = 'VimEnter',
   config = function()
     require('auto-session').setup({
       log_level = 'error',
@@ -136,7 +137,6 @@ package({
     end
   end,
   --keys = { '<F5>', '<F9>', '<F10>', '<F11>', '<F12>' },
-  -- event = 'VeryLazy',
   ft = { 'c', 'cpp' },
   dependencies = {
     { 'mfussenegger/nvim-dap' },

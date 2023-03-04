@@ -62,4 +62,4 @@ key_bindings:
   - { key: W, mods: ALT, action: Quit }
 
 import:
-  - ~/.config/alacritty/themes/themes/one_dark.yaml
+  - ~/.config/alacritty/themes/themes/tokyo-night.yaml

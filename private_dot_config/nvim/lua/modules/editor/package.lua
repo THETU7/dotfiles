@@ -3,7 +3,8 @@ local conf = require('modules.editor.config')
 
 package({
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufReadPre', 'BufNewFile' },
+  -- event = { 'BufReadPre', 'BufNewFile' },
+  event = { 'BufReadPost', 'BufNewFile' },
   run = ':TSUpdate',
   config = conf.nvim_treesitter,
   dependencies = {
@@ -13,7 +14,7 @@ package({
 
 package({
   'lukas-reineke/indent-blankline.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPost', 'BufNewFile' },
   config = function()
     require('indent_blankline').setup({})
   end,
